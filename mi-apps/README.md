@@ -219,7 +219,7 @@ componentWillUnmount(): su principal funcionalidad es limpiar nuestro componente
 
 - Nuestra estructura actualizada.
 
-
+```composer log
     mi-app
     ├── README.md
     ├── node_modules
@@ -242,7 +242,7 @@ componentWillUnmount(): su principal funcionalidad es limpiar nuestro componente
     └── static
         ├── favicon.ico
         └── manifest.json
-
+```
 
 ### Propiedades y Estado.
 - Pequeno intro a Propiedades y Estado de ReactJs
