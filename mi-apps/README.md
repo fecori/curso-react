@@ -7,7 +7,7 @@ React es un framework creado por los ingenieros de Facebook que nos ayudará a c
 - Iniciamos nuestra primera app en react (npm init react-app mi-app)
 - Estructura que se ha creado apartir de react-app
 
-
+```html
     mi-app
     ├── README.md
     ├── node_modules
@@ -25,7 +25,7 @@ React es un framework creado por los ingenieros de Facebook que nos ayudará a c
         ├── index.js
         ├── logo.svg
         └── serviceWorker.js
-
+```
 
 - Instalacion libreria Next (SSR)
 - Modificamos el package.json para iniciar next en vez de react-scripts
@@ -52,7 +52,7 @@ React es un framework creado por los ingenieros de Facebook que nos ayudará a c
 
 - Nueva estructura con Next.js
 
-
+```html
     mi-app
     ├── README.md
     ├── node_modules
@@ -65,7 +65,7 @@ React es un framework creado por los ingenieros de Facebook que nos ayudará a c
     └── static
         ├── favicon.ico
         └── manifest.json
- 
+```
 
 ### JSX.
 
