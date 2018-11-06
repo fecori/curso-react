@@ -211,11 +211,11 @@ componentWillUnmount(): su principal funcionalidad es limpiar nuestro componente
 - Creamos los componentes header, footer y layouts
 - Por cada componente crearemos index.jsx y styles.scss
 
-
+```ssh
     mkdir -p components/header components/footer components/layouts
     touch components/header/index.jsx components/footer/index.jsx components/layouts/index.jsx
     touch components/header/style.scss components/footer/style.scss components/layouts/style.scss
-
+```
 
 - Nuestra estructura actualizada.
 
