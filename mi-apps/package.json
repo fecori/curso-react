@@ -11,9 +11,10 @@
   "scripts": {
     "start2": "react-scripts start",
     "build2": "react-scripts build",
+    "dev2": "node server.js",
     "start": "next start",
     "build": "next build",
-    "dev": "node server.js",
+    "dev": "next dev",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -27,7 +27,7 @@ React es un framework creado por los ingenieros de Facebook que nos ayudará a c
         └── serviceWorker.js
 ```
 
-- Instalacion libreria Next (SSR)
+- Instalacion libreria Next.js (SSR)
 - Modificamos el package.json para iniciar next en vez de react-scripts
 
 
