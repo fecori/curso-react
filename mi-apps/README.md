@@ -113,7 +113,7 @@ Veamos cada ciclo de vida en detalle:
 ##### Los componentes son creados y actualizados
 Nuestros componentes deben pasar una vez por esta etapa. En esta, se ejecutan los ciclos de vida, desde que se invoca el componente hasta que se muestra por primera vez en la interfaz gráfica. En el siguiente orden:
 
-constructor(): este ciclo de vida se ejecuta cuando el componente es instanciado. Acá podemos definir su configuración inicial. Por ejemplo, configurar el estado o crear conexiones con nuestras funciones.
+###### constructor(): este ciclo de vida se ejecuta cuando el componente es instanciado. Acá podemos definir su configuración inicial. Por ejemplo, configurar el estado o crear conexiones con nuestras funciones.
 
     constructor(props) {
       super(props);
@@ -124,7 +124,7 @@ constructor(): este ciclo de vida se ejecuta cuando el componente es instanciado
       this.method = this.method.bind(this);
     }
 
-componentWillMount(): las modificaciones en este ciclo de vida no causan actualizaciones en el componente, y se corre justo antes de montar o renderizar el componente. Por ejemplo, un cambio condicional en el estado.
+###### componentWillMount(): las modificaciones en este ciclo de vida no causan actualizaciones en el componente, y se corre justo antes de montar o renderizar el componente. Por ejemplo, un cambio condicional en el estado.
 
     componentWillMount() {
       let answer;
@@ -143,7 +143,7 @@ componentWillMount(): las modificaciones en este ciclo de vida no causan actuali
       });
     }
 
-render(): este método, en esta etapa, genera la interfaz gráfica inicial. Modificar el estado puede causar un ciclo infinito. Por esta razón este método debe se puro.
+###### render(): este método, en esta etapa, genera la interfaz gráfica inicial. Modificar el estado puede causar un ciclo infinito. Por esta razón este método debe se puro.
 
     render() {
       return (
@@ -151,7 +151,7 @@ render(): este método, en esta etapa, genera la interfaz gráfica inicial. Modi
       );
     }
 
-componentDidMount(): el código que retorna nuestra función ya ha sido renderizado en el DOM y nuestra interfaz, hemos llegado al final de la etapa de montado. Este método solo se ejecuta una única vez. Es perfecto para trabajar con código asincrónico, llamados a APIs, y código retrasado con setTimeout.
+###### componentDidMount(): el código que retorna nuestra función ya ha sido renderizado en el DOM y nuestra interfaz, hemos llegado al final de la etapa de montado. Este método solo se ejecuta una única vez. Es perfecto para trabajar con código asincrónico, llamados a APIs, y código retrasado con setTimeout.
 
     componentDidMount() {
       apiCallMethod()
@@ -168,7 +168,7 @@ componentDidMount(): el código que retorna nuestra función ya ha sido renderiz
 
 Los componentes pueden o no actualizarse, y lo pueden hacer más de una vez. Los cambios en el estado o en las propiedades, son los causantes de estas actualizaciones, generando una interfaz con los nuevos valores. Los ciclos es esta etapa son:
 
-componentWillReceiveProps(nextProps): el primer ciclo en la etapa de actualización. Nos permite hacer cambios en el componente basados en un cambio en las propiedades. La razón por la que este método recibe el parámetro nextProps, es para permitirnos validar el cambio en las propiedades. nextProps debe ser diferente a this.props.
+###### componentWillReceiveProps(nextProps): el primer ciclo en la etapa de actualización. Nos permite hacer cambios en el componente basados en un cambio en las propiedades. La razón por la que este método recibe el parámetro nextProps, es para permitirnos validar el cambio en las propiedades. nextProps debe ser diferente a this.props.
 
     componentWillReaceiveProps(nextProps) {
       if(this.props.num1 !== nextProps.num1 || this.props.num2 !== nextProps.num2) {
@@ -178,13 +178,13 @@ componentWillReceiveProps(nextProps): el primer ciclo en la etapa de actualizaci
       }
     }
 
-shouldComponentUpdate(nextProps, nextState): nos permite validar un cambio en el estado o en las propiedades del componente por medio de nextProps, this.props, nextState, y this.state y retornar verdadero o falso para renderizar nuevamente o no el componente, respectivamente. Por defecto, siempre retorna true.
+###### shouldComponentUpdate(nextProps, nextState): nos permite validar un cambio en el estado o en las propiedades del componente por medio de nextProps, this.props, nextState, y this.state y retornar verdadero o falso para renderizar nuevamente o no el componente, respectivamente. Por defecto, siempre retorna true.
 
     shouldComponentUpdate(nextProps, nextState) {
       return nextProps.name !== this.props.name
     }
 
-componentWillUpdate(nextProps, nextState): se ejecuta cuando shouldComponentUpdate() retorna verdadero. Se hacen los últimos cambios antes de renderizar nuevamente el componente.
+###### componentWillUpdate(nextProps, nextState): se ejecuta cuando shouldComponentUpdate() retorna verdadero. Se hacen los últimos cambios antes de renderizar nuevamente el componente.
 
     componentWillUpdate(nextProps, nextState) {
       if(this.state.age !== nextStage.age) {
@@ -192,7 +192,7 @@ componentWillUpdate(nextProps, nextState): se ejecuta cuando shouldComponentUpda
       }
     }
 
-componentDidUpdate(prevProps, prevState): este es el último método de esta etapa. El componente se ha renderizado con los nuevos valores. Es perfecto para interactuar con el DOM
+###### componentDidUpdate(prevProps, prevState): este es el último método de esta etapa. El componente se ha renderizado con los nuevos valores. Es perfecto para interactuar con el DOM
 
     componentDidUpdate(prevProps, prevState) {
       this.createCard();
@@ -201,7 +201,7 @@ componentDidUpdate(prevProps, prevState): este es el último método de esta eta
 ##### Los componentes son desmontados
 Está es la última fase de los componentes. Consta de un único método que es invocado justo antes de que el componente sea destruido o sea sacado de nuestra interfaz.
 
-componentWillUnmount(): su principal funcionalidad es limpiar nuestro componente. Por ejemplo, dejar de escuchar eventos o cancelar peticiones HTTP pendientes.
+###### componentWillUnmount(): su principal funcionalidad es limpiar nuestro componente. Por ejemplo, dejar de escuchar eventos o cancelar peticiones HTTP pendientes.
 
     componentWillUnmount() {
       window.removeEventListener(anyEvent, anyEventHandler());
