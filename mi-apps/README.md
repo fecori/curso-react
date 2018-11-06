@@ -219,7 +219,7 @@ componentWillUnmount(): su principal funcionalidad es limpiar nuestro componente
 
 - Nuestra estructura actualizada.
 
-```composer log
+```html
     mi-app
     ├── README.md
     ├── node_modules
