@@ -254,6 +254,132 @@ Está es la última fase de los componentes. Consta de un único método que es 
 
 ### Formularios.
 
+Para este ejemplo instalaremos react-form
+
+    npm i react-final-form--save
+
+Crearemos un nuevo componente
+
+    mkdir -p components/formulario
+    touch components/formulario/index.jsx components/formulario/style.scss
+    
+Nuestra estructura actualizada
+
+```html
+    mi-app
+    ├── README.md
+    ├── node_modules
+    ├── package.json
+    ├── .gitignore
+    ├── components
+    │   ├── header
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── footer
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── layouts
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── formulario
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   └── galeria
+    │        ├── index.jsx
+    │        └── style.scss
+    ├── pages
+    │   ├── index.js
+    │   ├── _error.js
+    │   └── about.js
+    └── static
+        ├── favicon.ico
+        └── manifest.json
+```
+
+Iniciamos nuestro componente
+
+    import React, {Component} from 'react'
+    
+    export default class Formulario extends Component {
+        render() {
+            return <div>formulario</div>
+        }
+    }
+
+Agregamos nuestra libreria informed a nuestro proyecto
+
+    import { Form, Field } from 'react-final-form';
+    
+Agregamos un formulario de ejemplo
+
+    <form onSubmit={handleSubmit}>
+        <h2>Simple Default Input</h2>
+        <div>
+            <label>Nombre</label>
+            <Field name="nombre" component="input" type="text"/>
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+
+Agregamos nuestra funcion para enviar los datos de nuestro formulario, primero lo iniciamos en nuestro constructor
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+Agregamos la funcion dentro del componente
+
+    onSubmit(values) { // nuestro formulario nos enviara solo una variable con los datos del formulario, en este caso se llamara values
+        console.log('onSubmit', values)
+    }
+
+En nuestro componente del formulario 'Form' agregamos las funciones de onSubmit y los parametros que recivira del mismo formulario
+
+    <Form onSubmit={this.onSubmit} render={({submitError, handleSubmit, reset, submitting, pristine, values}) => ( NUESTROFORMULARIO )}
+    
+Con esto ya tenemos nuestro formulario funcionando y enviando nuestros datos.
+
+#### Validacion de los campos
+
+Comenzamos a hacer las validaciones del formulario.
+
+Para este ejemplo modificaremos el subcomponente Field de react-final-form, de la siguiente manera:
+
+    <Field name="nombre">
+        {({input, meta}) => (
+            <div>
+                <label>Nombre</label>
+                <input {...input} type="text" placeholder="Ingresar nombre"/>
+                {(meta.error || meta.submitError) &&
+                meta.touched && <span>{meta.error || meta.submitError}</span>}
+            </div>
+        )}
+    </Field>
+
+Y agregaremos otra funcion dentro de nuestro constructor, en este caso this.validate:
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.onSubmit = this.onSubmit.bind(this);
+        this.validate = this.validate.bind(this);
+    }
+    
+Iniciamos la funcion para validate, en el cual validaremos que el campo Nombre sea obligatorio:
+
+    validate(values) {
+        const errors = {};
+        if (!values.nombre) {
+            errors.nombre = "Requerido";
+        }
+        return errors;
+    }
+    
+Para terminar iniciamos dentro de Form nuestra funcion de validacion
+
+    <Form onSubmit={this.onSubmit} validate={this.validate} render={({submitError, handleSubmit, reset, submitting, pristine, values}) => ( NUESTROFORMULARIO )}
 
 ### Trabajando con Data: API's.
 Para este ejemplo vamos a necesitar de isomorphic-unfetch
@@ -283,6 +409,9 @@ Nuestra estructura actualizada
     │   ├── layouts
     │   │    ├── index.jsx
     │   │    └── style.scss
+    │   ├── formulario
+    │   │    ├── index.jsx
+    │   │    └── style.scss
     │   └── galeria
     │        ├── index.jsx
     │        └── style.scss
@@ -298,7 +427,7 @@ Utilizaremos es siguiente JSON http://www.json-generator.com/api/json/get/ceNzGk
 
 ##### Utilizando metodo GET:
 
-Creamos nuestro componente
+Iniciamos nuestro componente
 
     import React, {Component} from 'react'
     import fetch from 'isomorphic-unfetch'
