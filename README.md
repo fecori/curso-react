@@ -244,7 +244,7 @@ Está es la última fase de los componentes. Consta de un único método que es 
         └── manifest.json
 ```
 
-### Propiedades y Estado.
+### Propiedades (props) y Estado (state).
 - Pequeno intro a Propiedades y Estado de ReactJs
 
 
