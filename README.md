@@ -256,6 +256,97 @@ Está es la última fase de los componentes. Consta de un único método que es 
 
 
 ### Trabajando con Data: API's.
+Para este ejemplo vamos a necesitar de isomorphic-unfetch
+
+    npm i isomorphic-unfetch --save
+    
+Crearemos un nuevo componente
+
+    mkdir -p components/galeria
+    touch components/galeria/index.jsx components/galeria/style.scss
+    
+Nuestra estructura actualizada
+
+```html
+    mi-app
+    ├── README.md
+    ├── node_modules
+    ├── package.json
+    ├── .gitignore
+    ├── components
+    │   ├── header
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── footer
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── layouts
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   └── galeria
+    │        ├── index.jsx
+    │        └── style.scss
+    ├── pages
+    │   ├── index.js
+    │   ├── _error.js
+    │   └── about.js
+    └── static
+        ├── favicon.ico
+        └── manifest.json
+```
+Utilizaremos es siguiente JSON http://www.json-generator.com/api/json/get/ceNzGkwtWq?indent=2
+
+##### Utilizando metodo GET:
+
+Creamos nuestro componente
+
+    import React, {Component} from 'react'
+    import fetch from 'isomorphic-unfetch'
+    
+    export default class Galeria extends Component {
+       
+        render() {
+            return <div>Galeria de imagenes</div>;
+        }
+    }
+
+
+Iniciamos nuestro constructor
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            picture: {}
+        }
+    }
+
+Dentro del state 'picture' guardaremos todas las imagenes que nos devuelva isomorphic-unfetch, luego le decimos a nuestro componente que cada vez que se monte (Mount) haga la consulta a nuestro json para traer los objetos.
+
+    componentWillMount() {
+        fetch('http://www.json-generator.com/api/json/get/ceNzGkwtWq?indent=2')
+            .then(r => r.json()) // Devolvemos el resultado tipo JSON
+            .then(data => {
+                this.setState({
+                    picture: data // almacenamos la respuesta dentro del state picture
+                })
+            }).catch(err => {
+            console.log('Error!', err);
+        });
+    }
+
+Despues de almacenar nuestras imagenes dentro del state picture comenzamos a armar la respuestra dentro del render del componente.
+
+    const {picture} = this.state; // recuperamos los datos que almacensmos con componentWillMount
+    let contPicture = null; // iniciamos una variable en la cual agregaremos todos los objetos
+
+    if (picture.length) { // verificamos si nuestro state picture contiene objetos
+        contPicture = picture.map((image, key) => <div key={key}><img src={image.picture} alt=""/></div>) // hacemos un each al objeto picture para agregarlo dentro de nuestra variable de contenido, en este caso contPicture, para mostrarlo en el renderizado.
+    }
+    
+Agregamos la variable contPicture dentro del renderizado del componente
+
+    return <div>{contPicture}</div>;
+    
 
 
 Creación de una pequeña Aplicación. (se puede ir desarrollando mientras aprenden los conceptos)
