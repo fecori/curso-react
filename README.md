@@ -245,7 +245,68 @@ Está es la última fase de los componentes. Consta de un único método que es 
 ```
 
 ### Propiedades (props) y Estado (state).
-- Pequeno intro a Propiedades y Estado de ReactJs
+- Que son las propiedades(props)?
+
+  Los props son la manera que un componente superior manda información a componentes inferiores. Los props siempre van de componentes superiores a componentes inferiores, es por eso que React se ganó la fama de tener un flujo de datos uni-direccional.
+  Los props son inmutables (immutable en inglés) palabra elegante para decir que no cambian.
+  
+Para demostrar como funciona crearemos un componente llamado Mensajes
+  
+    mkdir -p components/mensajes
+    touch components/mensajes/index.jsx components/mensajes/style.scss
+    
+- Nuestra estructura actualizada.
+
+```html
+    mi-app
+    ├── README.md
+    ├── node_modules
+    ├── package.json
+    ├── .gitignore
+    ├── components
+    │   ├── header
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── footer
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── layouts
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   └── mensajes
+    │        ├── index.jsx
+    │        └── style.scss
+    ├── pages
+    │   ├── index.js
+    │   ├── _error.js
+    │   └── about.js
+    └── static
+        ├── favicon.ico
+        └── manifest.json
+```
+
+Iniciamos nuestro componente
+
+    import React, {Component} from 'react'
+    
+    class Mensaje extends Component {
+        render() {
+            const styles = {
+                color: this.props.color,
+                fontSize: this.props.size
+            };
+            return (
+                <h3 style={styles}>{this.props.contenido}</h3>
+            )
+        }
+    }
+    
+    export default Mensaje
+
+  
+- Que son los Estados(state)
+
+  El state es el estado de un componente.
 
 
 ### Eventos.
@@ -279,6 +340,9 @@ Nuestra estructura actualizada
     │   │    ├── index.jsx
     │   │    └── style.scss
     │   ├── layouts
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── mensajes
     │   │    ├── index.jsx
     │   │    └── style.scss
     │   ├── formulario
@@ -407,6 +471,9 @@ Nuestra estructura actualizada
     │   │    ├── index.jsx
     │   │    └── style.scss
     │   ├── layouts
+    │   │    ├── index.jsx
+    │   │    └── style.scss
+    │   ├── mensajes
     │   │    ├── index.jsx
     │   │    └── style.scss
     │   ├── formulario
