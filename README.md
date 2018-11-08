@@ -303,14 +303,72 @@ Iniciamos nuestro componente
     
     export default Mensaje
 
+Si se habran dado cuenta este componente esta esperando 2 props, que son 'color' y 'fontSize' que seran adjuntados en nuestro titular 'h3'
+
+Utilizando nuestro componente dentro de pages/index.js
+
+    import Mensajes from '../components/mensajes';
+    
+Agregamos nuestro contenedor con los props que va a recibir nuestro componente hijo.
+
+    <Mensajes size='30px' color='#ff0000' contenido='HOLA MUNDO' />
+
   
 - Que son los Estados(state)
 
-  El state es el estado de un componente.
+El state es el estado de un componente, solo eso? pues si :D
+
+Mayormente los state los utilizo para almacenar estados de carga para datos o algun parametro que se va a reutilizar dentro del componente, mayormente se los declara dentro del constructor del componente
+
+    constructor(props){
+        super(props);
+        this.state = {}; // Aqui
+    }  
+
+Practica state(no hay blablabla).
 
 
 ### Eventos.
-- Pequeno intro a Eventos de ReactJs
+
+El manejo de eventos con React es muy similar al manejo de eventos con DOM. solo hay algunas diferencias sintácticas:
+
+- Los eventos React se nombran usando camelCase, en lugar de minúsculas.
+- Con JSX, se pasa una función como controlador de eventos, en lugar de una cadena.
+
+Por ejemplo, en HTML:
+
+    <button onclick="clickme()">
+      Click me!
+    </button>
+
+Es ligeramente diferente en React:
+
+    <button onClick={clickme}>
+      Activate Lasers
+    </button>
+    
+Otra diferencia es que no puede devolver falso para evitar el comportamiento predeterminado en React.
+Debe llamar a preventDefault explícitamente. Por ejemplo, con HTML plano, para evitar el comportamiento predeterminado del enlace al abrir una nueva página, puede escribir:
+
+    <a href="#" onclick="console.log('Hice click!.'); return false">
+      Click me
+    </a>
+
+En cambio en React:
+
+    function ActionLink() {
+      function handleClick(e) {
+        e.preventDefault();
+        console.log('Hice click!.');
+      }
+    
+      return (
+        <a href="#" onClick={handleClick}>
+          Click me
+        </a>
+      );
+    }
+
 
 
 ### Formularios.
