@@ -8,6 +8,8 @@ import Button from "react-bootstrap/lib/Button";
 
 import Menu from '../components/menu';
 
+import logo from '../static/logo.svg';
+
 import style from './style-index.scss';
 
 export default class Home extends Component {
@@ -44,6 +46,9 @@ export default class Home extends Component {
                             <a>Pagina Demo</a>
                         </Link>
                         <Menu items={items}/>
+                        <p>
+                            <img src={logo} alt=""/>
+                        </p>
                     </Col>
                 </Row>
             </Grid>
