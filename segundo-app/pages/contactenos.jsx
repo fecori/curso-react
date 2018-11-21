@@ -5,6 +5,10 @@ import Contactenos from '../components/contactenos';
 export default class PageContactenos extends Component {
 
     render() {
+        let datos = {
+            nombre: 'Rita Vikenzi',
+            apellidos: 'Devs',
+        };
         return <LayoutMaster
             title="Contactenos"
             type="article"
